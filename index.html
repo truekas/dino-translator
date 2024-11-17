@@ -1,0 +1,43 @@
+<html lang="en">
+    <head>
+        <title>Dino Translator</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://js.puter.com/v2"></script>
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script>
+            function buttonSubmit() {
+                const req = document.getElementById('req').value
+                const prompt = `Translate the following text into dinosaur language and output only the translation: ${req}`
+                puter.ai.chat(prompt).then((response) => {
+                    var opts = {
+                        strings: [`${response}`],
+                        typeSpeed: 20,
+                    }
+                    var typed  = new Typed('.typed', opts)
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <div class="bg-[url('bg.png')] min-h-screen grid place-items-center grid-rows-3">
+            <div class="place-self-center w-[50%]">
+                <div class="w-full h-full border-2 border-green-500 border-solid transition-all hover:border-4 hover:backdrop-blur-3xl transition-all rounded-lg p-3 text-center backdrop-blur-2xl">
+                    <span class="text-7xl font-extrabold">
+                        Dino Translator
+                    </span>
+                </div>
+            </div>
+            <div class="grid place-items-center w-[70%] mb-20 space-x-4 grid-cols-2 h-[80%]">
+                <div class="place-self-center rounded-lg border-green-500 border-solid transition-all hover:border-4 border-2 w-full h-full backdrop-blur-2xl hover:backdrop-blur-3xl">
+                    <textarea id="req" placeholder="Input" class="rounded-lg text-black placeholder:text-black p-3 resize-none w-full h-full outline-none bg-transparent "></textarea>
+                </div>
+                <div class="place-self-center rounded-lg border-green-500 border-solid border-2 transition-all hover:border-4 w-full h-full backdrop-blur-2xl hover:backdrop-blur-3xl">
+                    <textarea id="res" readonly placeholder="Output" class="typed rounded-lg resize-none text-black p-3 placeholder:text-black w-full h-full outline-none bg-transparent "></textarea>
+                </div>
+            </div>
+            <div class="w-[70%] h-full place-self-center">
+                <button onclick="buttonSubmit()" class="rounded-lg w-full p-6 text-4xl hover:font-extrabold border-2  hover:border-4 border-green-500 hover:bg-green-500 hover:text-white transition-all border-solid text-center backdrop-blur-2xl hover:backdrop-blur-3xl">Submit Text</button>
+            </div>
+        </div>
+    </body>
+</html>
